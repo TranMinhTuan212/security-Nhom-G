@@ -36,7 +36,6 @@ if(!empty($_GET['keyword'])) {
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>
-
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -52,15 +51,13 @@ if(!empty($_GET['keyword'])) {
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
-        </nav>
-        <?php if(!empty($_SESSION['message'])){ ?>
-            <div class="alert alert-warning" role="alert">
-                <?php
+    </nav>
+    <?php if(!empty($_SESSION['message'])){ ?>
+        <div class="alert alert-warning" role="alert">
+            <?php
             echo $_SESSION['message'];
             unset($_SESSION['message']);
             ?>
         </div>
-        <?php } ?>
-    </div>
-    <a href="#" id="autoFillLink">Nhập dữ liệu</a>
-
+    <?php } ?>
+</div>

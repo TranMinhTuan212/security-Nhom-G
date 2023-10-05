@@ -9,6 +9,8 @@ if (!empty($_GET['id'])) {
     $id = $_GET['id'];
     $user = $userModel->findUserById($id);//Update existing user
 }
+
+
 if (!empty($_POST['submit'])) {
 
     if (!empty($id)) {

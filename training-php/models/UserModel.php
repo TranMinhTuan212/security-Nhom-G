@@ -49,14 +49,27 @@ class UserModel extends BaseModel {
      * @return mixed
      */
     public function updateUser($input) {
-        $sql = 'UPDATE users SET 
-                 name = "' . mysqli_real_escape_string(self::$_connection, $input['name']) .'", 
-                 password="'. md5($input['password']) .'"
-                WHERE id = ' . $input['id'];
 
-        $user = $this->update($sql);
+        $user = $this->findUserById($input['id'])[0];
+        if($user['version'] == $input['version']){
+            $version = $input['version'] + 1;
+            $sql = 'UPDATE users SET 
+            name = "' . mysqli_real_escape_string(self::$_connection, $input['name']) .'", fullname="'. $input['full-name'] .'",
+            type="'. $input['type'] .'", version="'. $version .'"
+            WHERE id = ' . $input['id'];
+            $user = $this->update($sql);
+            return $user;
+        }else{
+            return null;
+        }
 
-        return $user;
+            // $sql = 'UPDATE users SET 
+            // name = "' . mysqli_real_escape_string(self::$_connection, $input['name']) .'", fullname="'. $input['full-name'] .'",
+            // type="'. $input['type'] .'"
+            // WHERE id = ' . $input['id'];
+            // $user = $this->update($sql);
+            // return $user;
+        
     }
 
     /**

@@ -2,6 +2,10 @@
 // Start the session
 session_start();
 
+$result = false;
+if(!empty($_GET['result'])){
+    $result = true;
+}
 require_once 'models/UserModel.php';
 $userModel = new UserModel();
 
@@ -17,8 +21,30 @@ $users = $userModel->getUsers($params);
 <head>
     <title>Home</title>
     <?php include 'views/meta.php' ?>
+    <style>
+        .error{
+            position: fixed;
+            left: 50%;
+            top: 20%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 100px;
+            background-color: rgb(242, 95, 95);
+            text-align: center;
+            line-height: 80px;
+            font-size: 24px;
+            color: #fff;
+            animation: hidden .3s ease-in 2s forwards;
+        }
+
+        @keyframes hidden{
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
 </head>
 <body>
+    <?php if($result) echo('<div class="error">Có lỗi vui nòng thử nại sau !</div>') ?> 
     <?php include 'views/header.php'?>
     <div class="container">
         <?php if (!empty($users)) {?>
@@ -30,16 +56,16 @@ $users = $userModel->getUsers($params);
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Fullname</th>
-                        <th scope="col">Type</th>
+                        <th scope="col">Toán</th>
+                        <th scope="col">Lý</th>
+                        <th scope="col">Hóa</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($users as $user) {?>
                         <tr>
-                            <th scope="row"><?php echo $user['id']?></th>
+                            <th scope="row">Điểm</th>
                             <td>
                                 <?php echo $user['name']?>
                             </td>
@@ -70,5 +96,13 @@ $users = $userModel->getUsers($params);
             </div>
         <?php } ?>
     </div>
+
+
+    <script>
+        setTimeout(()=>{
+            const error = document.querySelector('.error')
+            error.style.display = 'none'
+        }, 3000);
+    </script>
 </body>
 </html>
